@@ -1,6 +1,8 @@
+# 01-helloworld
+
 ## working code
 
-- filenaem : helloworld.asm
+- filename : helloworld.asm
 
 ```
 global _main
@@ -25,3 +27,23 @@ message:
 - $nasm -f macho64 helloworld.asm
 - $ld -macosx_version_min 13.1 -e _main -static helloworld.o
 - $./a.out 
+  
+
+# 02-stack-frame
+
+## working cord
+- filename: sum.c
+
+```
+#include <stdio.h>
+
+int sum(int a, int b) {
+  return a + b;
+}
+
+int main(void) {
+  int c = sum(1, 2);
+  return c;
+}
+```
+$clang -S -fno-stack-protector -z execstack -o sum.asm sum.c 
