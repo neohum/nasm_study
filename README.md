@@ -74,7 +74,7 @@ int main(void) {
 <details>
   <summary>03-echo</summary>
 
-## 03-echo
+# 03-echo
 ```
 ; Echo program that waits for user to enter a character and than echoing it.
 ; NASM assembly for Mac OS X x64.
@@ -132,3 +132,32 @@ _main:
 
 </details>
 
+<details>
+  <summary>04-loop</summary>
+# 04-loop
+```
+  global _start
+
+  section .text
+  
+_start:
+  mov rax, 0x2000004
+  mov rdi, 1
+  mov rsi, msg
+  mov rdx, 1
+
+  syscall
+
+  mov rax, 0x02000001
+  xor rdi, rdi
+
+  syscall
+
+  section .data
+msg: 
+  db "A"
+```
+- nasm -f macho64 loop.asm 
+- d -macosx_version_min 13.1 -e _start -static loop.o
+- ./a.out
+</details>
